@@ -6,7 +6,5 @@ export declare class AuthController {
     signin(): {
         msg: string;
     };
-    signup(authDto: AuthDto): {
-        msg: string;
-    };
+    signup(authDto: AuthDto): Promise<any>;
 }

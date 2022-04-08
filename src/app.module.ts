@@ -6,6 +6,11 @@ import { BookMarkModule } from './bookmark/bookmark.module';
 
 
 @Module({
-  imports: [AuthModule, UserModule, PrismaModule, BookMarkModule],
+  imports: [
+    AuthModule, 
+    UserModule, 
+    PrismaModule, 
+    BookMarkModule  
+  ],
 })
 export class AppModule {}

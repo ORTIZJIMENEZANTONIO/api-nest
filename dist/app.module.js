@@ -16,7 +16,12 @@ let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [auth_module_1.AuthModule, user_module_1.UserModule, prisma_module_1.PrismaModule, bookmark_module_1.BookMarkModule],
+        imports: [
+            auth_module_1.AuthModule,
+            user_module_1.UserModule,
+            prisma_module_1.PrismaModule,
+            bookmark_module_1.BookMarkModule
+        ],
     })
 ], AppModule);
 exports.AppModule = AppModule;
