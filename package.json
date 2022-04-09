@@ -6,6 +6,11 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
+    "prisma:dev:deploy": "npx prisma migrate deploy",
+    "db:dev:rm":"docker-compose stop dev-db && docker-compose rm dev-db",
+    "db:dev:up": "docker-compose up -d dev-db",
+    "db:dev:restart": "yarn db:dev:rm && yarn db:dev:up && sleep 1 && yarn prisma:dev:deploy",
+    "yarn:run:dev": "docker-compose up -d && npx migrate dev && npx generate",
     "prebuild": "rimraf dist",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",

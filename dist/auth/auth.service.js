@@ -28,12 +28,28 @@ let AuthService = class AuthService {
                 hash,
                 email: authDto.email
             },
+            select: {
+                id: true,
+                email: true,
+                createdAt: true
+            }
         }))
             .then(result => result)
             .catch(err => err);
     }
-    signin() {
-        return { msg: 'im sign in' };
+    async signin(authDto) {
+        const user = await this.prisma.user.findUnique({
+            where: {
+                email: authDto.email
+            }
+        });
+        if (!user)
+            throw new common_1.ForbiddenException('Credential incorrect');
+        const passMatches = await argon.verify(user.hash, authDto.password);
+        if (!passMatches)
+            throw new common_1.ForbiddenException('Credential incorrect');
+        delete user.hash;
+        return user;
     }
 };
 AuthService = __decorate([

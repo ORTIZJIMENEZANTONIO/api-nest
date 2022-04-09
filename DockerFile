@@ -1,0 +1,10 @@
+FROM node:14-alpine
+WORKDIR /app
+ENV PORT 3000
+RUN apk update && apk upgrade && apk --no-cache add --virtual builds-deps build-base python3
+COPY package.json /app
+COPY yarn.lock /app
+RUN yarn install
+EXPOSE 3000
+COPY . /app
+CMD ["yarn", "start:dev"]
